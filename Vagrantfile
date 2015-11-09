@@ -12,21 +12,37 @@ end
 require 'vagrant-openstack-provider'
 
 Vagrant.configure('2') do |config|
+  config.ssh.username = 'vagrant'
 
-  config.vm.define 'vagrant-nebula', primary: true do |define|
-    define.vm.box       = 'openstack-vagrant-nebula'
-    define.ssh.username = 'ubuntu'
-
-    define.vm.provider :openstack do |os|
-      os.openstack_auth_url = ENV['OS_AUTH_URL']
-      os.username           = ENV['OS_USERNAME']
-      os.password           = ENV['OS_PASSWORD']
-      os.tenant_name        = ENV['OS_PROJECT_NAME']
-      os.flavor             = ENV['OS_FLAVOR_NAME'] || 'm1.medium'
-      os.image              = ENV['OS_IMAGE_NAME'] || 'b1f4bb91-13fb-4e73-b697-3c0ab23d17ec'
-      os.floating_ip_pool   = 'ext-net'
-      os.security_groups    = ['default', 'remote SSH', 'remote mosh']
-      os.networks           = ['fc77a88d-a9fb-47bb-a65d-39d1be7a7174'] # LSST-net
+  config.vm.define 'el6' do |define|
+    define.vm.provider :openstack do |provider, override|
+      provider.image = 'centos-6-stack-w_2015_45-1447095131'
+      provider.server_name = "el6-#{ENV['USER']}"
     end
+  end
+
+  config.vm.define 'el7' do |define|
+    define.vm.provider :openstack do |provider, override|
+      provider.image = 'centos-7-stack-w_2015_45-1447100091'
+      provider.server_name = "el7-#{ENV['USER']}"
+    end
+  end
+
+  config.vm.provider :openstack do |os,override|
+    os.sync_method        = 'none'
+    os.user_data          = <<-EOS
+#cloud-config
+system_info:
+  default_user:
+    name: vagrant
+    EOS
+    os.username           = ENV['OS_USERNAME']
+    os.password           = ENV['OS_PASSWORD']
+    os.tenant_name        = ENV['OS_PROJECT_NAME']
+    os.openstack_auth_url = ENV['OS_AUTH_URL']
+    os.flavor             = 'm1.xlarge'
+    os.floating_ip_pool   = 'ext-net'
+    os.security_groups    = ['default', 'remote SSH']
+    os.networks           = ['fc77a88d-a9fb-47bb-a65d-39d1be7a7174']
   end
 end
