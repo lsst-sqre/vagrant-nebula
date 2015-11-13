@@ -82,7 +82,7 @@ By default this Vagrant configuration provides stable [LSST Software Stack](http
 Internals
 ---------
 
-Your Vagrant machine is provisioned on Nebula's OpenStack cloud through the OpenStack API. Your machine will be named `el7-user` where user is your username when you run the `vagrant` command. The [vagrant-openstack-provider](https://github.com/ggiamarchi/vagrant-openstack-provider) will create and associate an SSH key-pair for your Vagrant machine. If you log into the Nebula Horizon dashboard you'll be able to find your OpenStack instance in the the [Instances list](https://nebula.ncsa.illinois.edu/dashboard/project/instances/) and your key pair in the [Key Pairs tab](https://nebula.ncsa.illinois.edu/dashboard/project/access_and_security/?tab=access_security_tabs__keypairs_tab).
+Your Vagrant machine is provisioned on Nebula's OpenStack cloud through the OpenStack API. Your Nebula OpenStack instance will be named `{VAGRANT_MACHINE}-{USERNAME}` for example `el7-user`. The [vagrant-openstack-provider](https://github.com/ggiamarchi/vagrant-openstack-provider) will create and associate a SSH key pair for your Vagrant machine. If you log into the Nebula Horizon dashboard you'll be able to find your OpenStack instance in the the [Instances list](https://nebula.ncsa.illinois.edu/dashboard/project/instances/) and your key pair in the [Key Pairs tab](https://nebula.ncsa.illinois.edu/dashboard/project/access_and_security/?tab=access_security_tabs__keypairs_tab).
 
 Your exact machine configuration can be changed through editing the `Vagrantfile`, using the Nebula Horizon dashboard or using the OpenStack API.
 
