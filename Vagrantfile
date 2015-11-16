@@ -28,6 +28,14 @@ Vagrant.configure('2') do |config|
     end
   end
 
+  config.vm.define 'el7-docker' do |define|
+    define.vm.provider :openstack do |provider, override|
+      provider.image       = '59a2a478-11ab-41c5-affc-29706d38d65a'
+      provider.server_name = "el7-docker-#{ENV['USER']}"
+      provider.flavor      = 'm1.medium'
+    end
+  end
+
   config.vm.provider :openstack do |os,override|
     os.sync_method        = 'none'
     os.user_data          = <<-EOS
