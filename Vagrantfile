@@ -14,14 +14,16 @@ Vagrant.configure('2') do |config|
 
   config.vm.define 'el6' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = '148345e7-d36b-4eab-82c5-9b26f1ab36c6'
+      # centos-6-stack-lsst_distrib-w_2016_05-20160211215747
+      provider.image = '9f7c8bb8-9aca-4e71-9ce8-afab0dd9a8d2'
       provider.server_name = "el6-#{ENV['USER']}"
     end
   end
 
   config.vm.define 'el7' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = 'ee17a738-a2d5-4cbf-b599-5721b8aa4552'
+      # centos-7-stack-lsst_distrib-w_2016_05-20160211215747
+      provider.image = '36e5d388-d805-4b23-989c-82d6b868e1d2'
       provider.server_name = "el7-#{ENV['USER']}"
     end
   end
@@ -30,7 +32,7 @@ Vagrant.configure('2') do |config|
     define.vm.provider :openstack do |provider, override|
       provider.image       = '59a2a478-11ab-41c5-affc-29706d38d65a'
       provider.server_name = "el7-docker-#{ENV['USER']}"
-      provider.flavor      = 'm1.medium'
+      provider.flavor      = 'm1.xlarge'
     end
   end
 
