@@ -9,8 +9,6 @@ if not plugins_to_install.empty?
   exec "vagrant #{ARGV.join(' ')}"
 end
 
-require 'vagrant-openstack-provider'
-
 Vagrant.configure('2') do |config|
   config.ssh.username = 'vagrant'
 
