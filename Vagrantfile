@@ -46,7 +46,7 @@ system_info:
     os.password           = ENV['OS_PASSWORD']
     os.tenant_name        = ENV['OS_PROJECT_NAME']
     os.openstack_auth_url = ENV['OS_AUTH_URL']
-    os.flavor             = 'm1.xlarge'
+    os.flavor             = 'm4.large'
     os.floating_ip_pool   = 'ext-net'
     os.security_groups    = ['default', 'remote SSH']
     os.networks           = ['fc77a88d-a9fb-47bb-a65d-39d1be7a7174']
