@@ -18,41 +18,47 @@ Vagrant.configure('2') do |config|
 
   config.vm.define 'es-1' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = 'ubuntu_pan_es_20160420034425'
+      provider.image = 'ubuntu_pan_es_20160421060456'
       provider.flavor = 'n-rd1.large'
       provider.server_name = "es-1-#{ENV['USER']}"
+      provider.security_groups = ['default', 'remote SSH']
     end
   end
 
   config.vm.define 'es-2' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = 'ubuntu_pan_es_20160420034425'
+      provider.image = 'ubuntu_pan_es_20160421060456'
       provider.flavor = 'n-rd1.large'
       provider.server_name = "es-2-#{ENV['USER']}"
+      provider.security_groups = ['default', 'remote SSH']
     end
   end
 
   config.vm.define 'es-3' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = 'ubuntu_pan_es_20160420034425'
+      provider.image = 'ubuntu_pan_es_20160421060456'
       provider.flavor = 'n-rd1.large'
       provider.server_name = "es-3-#{ENV['USER']}"
+      provider.security_groups = ['default', 'remote SSH']
     end
   end
 
   config.vm.define 'es-4' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = 'ubuntu_pan_es_20160420034425'
+      provider.image = 'ubuntu_pan_es_20160421060456'
       provider.flavor = 'n-rd1.large'
       provider.server_name = "es-4-#{ENV['USER']}"
+      provider.security_groups = ['default', 'remote SSH']
     end
   end
 
   config.vm.define 'es-k' do |define|
     define.vm.provider :openstack do |provider, override|
-      provider.image = 'ubuntu_pan_es_k_20160420013734'
+      provider.image = 'ubuntu_pan_es_k_20160421060937'
       provider.flavor = 'n-rcd1.large'
       provider.server_name = "es-k-#{ENV['USER']}"
+      provider.security_groups    = ['default', 'remote SSH',
+                                     'remote HTTP', 'remote https']
     end
   end
 
@@ -61,6 +67,7 @@ Vagrant.configure('2') do |config|
       provider.image = 'ubuntu_pan_lfr_20160420000828'
       provider.flavor = 'm4.large'
       provider.server_name = "lfr-#{ENV['USER']}"
+      provider.security_groups = ['default', 'remote SSH']
     end
   end
 
@@ -77,7 +84,6 @@ system_info:
     os.tenant_name        = ENV['OS_PROJECT_NAME']
     os.openstack_auth_url = ENV['OS_AUTH_URL']
     os.floating_ip_pool   = 'ext-net'
-    os.security_groups    = ['default', 'remote SSH']
     os.networks           = ['fc77a88d-a9fb-47bb-a65d-39d1be7a7174']
   end
 end
