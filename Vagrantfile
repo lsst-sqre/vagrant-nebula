@@ -9,29 +9,33 @@ if not plugins_to_install.empty?
   exec "vagrant #{ARGV.join(' ')}"
 end
 
+def sname(host)
+  "#{ENV['USER']}-#{host}"
+end
+
 Vagrant.configure('2') do |config|
   config.ssh.username = 'vagrant'
 
   config.vm.define 'el6' do |define|
     define.vm.provider :openstack do |provider, override|
-      # centos-6-stack-lsst_distrib-w_2016_20-20160516164545
-      provider.image = '2ee625d0-bada-4446-831e-c3982f75771e'
-      provider.server_name = "el6-#{ENV['USER']}"
+      # centos-6-stack-lsst_distrib-v12_0-20160621152742
+      provider.image = 'eb1f5e9a-d531-488a-8106-a7973af3acf3'
+      provider.server_name = sname('el6')
     end
   end
 
   config.vm.define 'el7' do |define|
     define.vm.provider :openstack do |provider, override|
-      # centos-7-stack-lsst_distrib-w_2016_20-20160516164545
-      provider.image = '2c6ae965-502f-4c43-b486-02e5a865d81b'
-      provider.server_name = "el7-#{ENV['USER']}"
+      # centos-7-stack-lsst_distrib-v12_0-20160621152742
+      provider.image = '0e0185c9-aaf6-4f1e-954d-c5a68fd99325'
+      provider.server_name = sname('el7')
     end
   end
 
   config.vm.define 'el7-docker' do |define|
     define.vm.provider :openstack do |provider, override|
       provider.image       = '59a2a478-11ab-41c5-affc-29706d38d65a'
-      provider.server_name = "el7-docker-#{ENV['USER']}"
+      provider.server_name = sname('el7-docker')
       provider.flavor      = 'm1.xlarge'
     end
   end
