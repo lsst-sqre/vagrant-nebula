@@ -14,16 +14,16 @@ Vagrant.configure('2') do |config|
 
   config.vm.define 'el6' do |define|
     define.vm.provider :openstack do |provider, override|
-      # centos-6-stack-lsst_distrib-w_2016_20-20160516164545
-      provider.image = '2ee625d0-bada-4446-831e-c3982f75771e'
+      # centos-6-stack-lsst_distrib-v12_0-20160621152742
+      provider.image = 'eb1f5e9a-d531-488a-8106-a7973af3acf3'
       provider.server_name = "el6-#{ENV['USER']}"
     end
   end
 
   config.vm.define 'el7' do |define|
     define.vm.provider :openstack do |provider, override|
-      # centos-7-stack-lsst_distrib-w_2016_20-20160516164545
-      provider.image = '2c6ae965-502f-4c43-b486-02e5a865d81b'
+      # centos-7-stack-lsst_distrib-v12_0-20160621152742
+      provider.image = '0e0185c9-aaf6-4f1e-954d-c5a68fd99325'
       provider.server_name = "el7-#{ENV['USER']}"
     end
   end
